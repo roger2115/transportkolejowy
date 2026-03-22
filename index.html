@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRANSPORT KOLEJOWY // BRIEFING</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="scanlines"></div>
+<div id="noise"></div>
+
+<!-- BOOT -->
+<div id="boot-screen">
+  <div id="boot-logo">
+    <svg viewBox="0 0 120 40" width="300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="15" width="120" height="4" fill="#00ff88" opacity="0.3"/>
+      <rect x="10" y="10" width="100" height="14" rx="2" fill="none" stroke="#00ff88" stroke-width="1"/>
+      <circle cx="25" cy="17" r="5" fill="none" stroke="#00ff88" stroke-width="1.5"/>
+      <circle cx="95" cy="17" r="5" fill="none" stroke="#00ff88" stroke-width="1.5"/>
+      <rect x="35" y="13" width="50" height="8" rx="1" fill="none" stroke="#00ff88" stroke-width="1"/>
+      <line x1="0" y1="17" x2="10" y2="17" stroke="#00ff88" stroke-width="2"/>
+      <line x1="110" y1="17" x2="120" y2="17" stroke="#00ff88" stroke-width="2"/>
+    </svg>
+  </div>
+  <div id="boot-text"></div>
+  <div id="boot-bar"><div id="boot-bar-fill"></div></div>
+  <div id="boot-status">INICJALIZACJA...</div>
+</div>
+
+<!-- MAIN -->
+<div id="main" class="hidden">
+  <header id="top-bar">
+    <div class="corner-bracket tl"></div><div class="corner-bracket tr"></div>
+    <div id="header-left">
+      <div class="blink-dot"></div>
+      <span id="header-type"></span>
+    </div>
+    <div id="header-center">
+      <span class="hud-tag">KLASYFIKACJA: PUBLICZNE</span>
+      <span class="hud-sep">◆</span>
+      <span class="hud-tag">WERSJA 1.0</span>
+      <span class="hud-sep">◆</span>
+      <span class="hud-tag" id="clock"></span>
+    </div>
+    <div id="header-right">
+      <div class="signal-bars">
+        <div class="bar b1"></div><div class="bar b2"></div>
+        <div class="bar b3"></div><div class="bar b4"></div>
+      </div>
+      <span class="hud-tag">SYGNAŁ: AKTYWNY</span>
+    </div>
+  </header>
+
+  <div id="layout">
+    <!-- LEFT: NAV -->
+    <nav id="sidebar">
+      <div class="nav-label">// MODUŁY BRIEFINGU</div>
+      <ul id="nav-list">
+        <li class="nav-item active" data-section="intro"><span class="ni-num">01</span><span class="ni-text">WPROWADZENIE</span></li>
+        <li class="nav-item" data-section="network"><span class="ni-num">02</span><span class="ni-text">SIEĆ KOLEJOWA</span></li>
+        <li class="nav-item" data-section="infra"><span class="ni-num">03</span><span class="ni-text">INFRASTRUKTURA</span></li>
+        <li class="nav-item" data-section="mgmt"><span class="ni-num">04</span><span class="ni-text">ZARZĄDZANIE</span></li>
+        <li class="nav-item" data-section="passenger"><span class="ni-num">05</span><span class="ni-text">PRZEWOZY PASAŻ.</span></li>
+        <li class="nav-item" data-section="carriers"><span class="ni-num">06</span><span class="ni-text">PRZEWOŹNICY</span></li>
+        <li class="nav-item" data-section="cargo"><span class="ni-num">07</span><span class="ni-text">TRANSPORT TOWAR.</span></li>
+        <li class="nav-item" data-section="types"><span class="ni-num">08</span><span class="ni-text">RODZAJE POCIĄGÓW</span></li>
+        <li class="nav-item" data-section="pros"><span class="ni-num">09</span><span class="ni-text">ZALETY</span></li>
+        <li class="nav-item" data-section="cons"><span class="ni-num">10</span><span class="ni-text">WADY</span></li>
+      </ul>
+      <div id="progress-wrap">
+        <div class="nav-label">// POSTĘP</div>
+        <div id="progress-track"><div id="progress-fill"></div></div>
+        <span id="progress-pct">10%</span>
+      </div>
+      <div id="footer-btns">
+        <button class="nav-btn" id="btn-prev">◀ WSTECZ</button>
+        <button class="nav-btn" id="btn-next">DALEJ ▶</button>
+      </div>
+    </nav>
+
+    <!-- CENTER: CONTENT -->
+    <main id="content-area">
+
+      <!-- 01 INTRO -->
+      <section class="section active" id="sec-intro">
+        <div class="sec-header">
+          <div class="sec-num-big">01</div>
+          <div>
+            <div class="sec-tag">MODUŁ WSTĘPNY // PRZEGLĄD OGÓLNY</div>
+            <h1 class="sec-title" data-text="TRANSPORT KOLEJOWY">TRANSPORT KOLEJOWY</h1>
+          </div>
+          <div class="status-pill">● AKTYWNY</div>
+        </div>
+        <div class="intro-hero">
+          <svg class="train-svg" viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg">
+            <!-- Track -->
+            <line x1="0" y1="100" x2="500" y2="100" stroke="#1a4a22" stroke-width="3"/>
+            <line x1="0" y1="108" x2="500" y2="108" stroke="#1a4a22" stroke-width="3"/>
+            <!-- Sleepers -->
+            <g stroke="#0d2010" stroke-width="2">
+              <line x1="20" y1="97" x2="20" y2="111"/><line x1="50" y1="97" x2="50" y2="111"/>
+              <line x1="80" y1="97" x2="80" y2="111"/><line x1="110" y1="97" x2="110" y2="111"/>
+              <line x1="140" y1="97" x2="140" y2="111"/><line x1="170" y1="97" x2="170" y2="111"/>
+              <line x1="200" y1="97" x2="200" y2="111"/><line x1="230" y1="97" x2="230" y2="111"/>
+              <line x1="260" y1="97" x2="260" y2="111"/><line x1="290" y1="97" x2="290" y2="111"/>
+              <line x1="320" y1="97" x2="320" y2="111"/><line x1="350" y1="97" x2="350" y2="111"/>
+              <line x1="380" y1="97" x2="380" y2="111"/><line x1="410" y1="97" x2="410" y2="111"/>
+              <line x1="440" y1="97" x2="440" y2="111"/><line x1="470" y1="97" x2="470" y2="111"/>
+            </g>
+            <!-- Locomotive -->
+            <g class="train-body" transform="translate(30,0)">
+              <rect x="0" y="55" width="130" height="40" rx="4" fill="#0a1a0e" stroke="#00ff88" stroke-width="1.5"/>
+              <polygon points="130,55 160,65 160,95 130,95" fill="#0a1a0e" stroke="#00ff88" stroke-width="1.5"/>
+              <rect x="5" y="60" width="30" height="18" rx="2" fill="none" stroke="#00cc66" stroke-width="1"/>
+              <rect x="40" y="60" width="30" height="18" rx="2" fill="none" stroke="#00cc66" stroke-width="1"/>
+              <rect x="75" y="60" width="30" height="18" rx="2" fill="none" stroke="#00cc66" stroke-width="1"/>
+              <rect x="5" y="60" width="30" height="18" rx="2" fill="rgba(0,255,136,0.08)"/>
+              <circle cx="25" cy="95" r="8" fill="#050a06" stroke="#00ff88" stroke-width="2"/>
+              <circle cx="25" cy="95" r="4" fill="#00ff88" opacity="0.5"/>
+              <circle cx="105" cy="95" r="8" fill="#050a06" stroke="#00ff88" stroke-width="2"/>
+              <circle cx="105" cy="95" r="4" fill="#00ff88" opacity="0.5"/>
+              <rect x="155" y="68" width="8" height="4" rx="1" fill="#ff6600"/>
+              <rect x="0" y="50" width="60" height="8" rx="2" fill="#0a1a0e" stroke="#00ff88" stroke-width="1"/>
+              <text x="10" y="47" fill="#00ff88" font-size="8" font-family="monospace">PKP IC</text>
+            </g>
+            <!-- Wagon 1 -->
+            <g transform="translate(200,0)">
+              <rect x="0" y="58" width="100" height="37" rx="3" fill="#0a1a0e" stroke="#1a4a22" stroke-width="1.5"/>
+              <rect x="5" y="63" width="25" height="16" rx="2" fill="none" stroke="#1a4a22" stroke-width="1"/>
+              <rect x="35" y="63" width="25" height="16" rx="2" fill="none" stroke="#1a4a22" stroke-width="1"/>
+              <rect x="65" y="63" width="25" height="16" rx="2" fill="none" stroke="#1a4a22" stroke-width="1"/>
+              <circle cx="20" cy="95" r="7" fill="#050a06" stroke="#1a4a22" stroke-width="1.5"/>
+              <circle cx="80" cy="95" r="7" fill="#050a06" stroke="#1a4a22" stroke-width="1.5"/>
+            </g>
+            <!-- Wagon 2 -->
+            <g transform="translate(315,0)">
+              <rect x="0" y="58" width="100" height="37" rx="3" fill="#0a1a0e" stroke="#1a4a22" stroke-width="1.5"/>
+              <rect x="5" y="63" width="25" height="16" rx="2" fill="none" stroke="#1a4a22" stroke-width="1"/>
+              <rect x="35" y="63" width="25" height="16" rx="2" fill="none" stroke="#1a4a22" stroke-width="1"/>
+              <rect x="65" y="63" width="25" height="16" rx="2" fill="none" stroke="#1a4a22" stroke-width="1"/>
+              <circle cx="20" cy="95" r="7" fill="#050a06" stroke="#1a4a22" stroke-width="1.5"/>
+              <circle cx="80" cy="95" r="7" fill="#050a06" stroke="#1a4a22" stroke-width="1.5"/>
+            </g>
+            <!-- Speed lines -->
+            <g stroke="#00ff88" stroke-width="1" opacity="0.3" class="speed-lines">
+              <line x1="0" y1="70" x2="25" y2="70"/><line x1="0" y1="75" x2="20" y2="75"/>
+              <line x1="0" y1="80" x2="30" y2="80"/><line x1="0" y1="85" x2="15" y2="85"/>
+            </g>
+          </svg>
+        </div>
+        <div class="two-col">
+          <div class="text-block">
+            <p class="tw" data-d="0">Transport kolejowy to jeden z fundamentalnych filarów systemu transportowego Polski i Europy. Stanowi kręgosłup mobilności zarówno pasażerów, jak i ładunków na przestrzeni dziesiątek tysięcy kilometrów torów.</p>
+            <p class="tw" data-d="1">Kolej łączy miasta, regiony i kraje — oferując alternatywę bardziej ekologiczną, pojemną i niezawodną niż transport drogowy czy lotniczy w warunkach masowego przewozu.</p>
+            <p class="tw" data-d="2">Historia kolei w Polsce sięga XIX wieku. Pierwsze linie powstawały jeszcze w czasach zaborów. Dziś sieć liczy ponad <span class="hl">18 000 km</span> linii kolejowych obsługiwanych przez kilkunastu przewoźników.</p>
+          </div>
+          <div class="stat-panel">
+            <div class="stat-item"><div class="stat-val counter" data-target="18513">0</div><div class="stat-lbl">KM LINII KOLEJOWYCH</div></div>
+            <div class="stat-item"><div class="stat-val counter" data-target="2800">0</div><div class="stat-lbl">STACJI I PRZYSTANKÓW</div></div>
+            <div class="stat-item"><div class="stat-val counter" data-target="280">0</div><div class="stat-lbl">MLN PASAŻERÓW / ROK</div></div>
+            <div class="stat-item"><div class="stat-val counter" data-target="1850">0</div><div class="stat-lbl">MLN TONOKILOMETRÓW</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 NETWORK -->
+      <section class="section" id="sec-network">
+        <div class="sec-header">
+          <div class="sec-num-big">02</div>
+          <div><div class="sec-tag">DANE OPERACYJNE // TOPOLOGIA SIECI</div>
+          <h1 class="sec-title" data-text="SIEĆ KOLEJOWA W POLSCE">SIEĆ KOLEJOWA W POLSCE</h1></div>
+          <div class="status-pill">● AKTYWNY</div>
+        </div>
+        <div class="two-col">
+          <div class="text-block">
+            <p class="tw" data-d="0">Polska sieć kolejowa jest jedną z największych w Europie Środkowej. Zarządzana przez <span class="hl">PKP PLK S.A.</span>, obejmuje linie magistralne, pierwszorzędne i drugorzędne.</p>
+            <p class="tw" data-d="1">Kluczowe korytarze transportowe przebiegają przez Polskę w ramach sieci <span class="hl">TEN-T</span> (Trans-European Transport Network), łącząc wschód z zachodem Europy.</p>
+            <div class="data-table">
+              <div class="dt-row hdr"><span>KATEGORIA</span><span>DŁUGOŚĆ</span><span>UDZIAŁ</span></div>
+              <div class="dt-row"><span>Linie magistralne</span><span>3 800 km</span><span class="bar-cell"><div class="bar" style="--w:21%"></div>21%</span></div>
+              <div class="dt-row"><span>Linie pierwszorzędne</span><span>5 200 km</span><span class="bar-cell"><div class="bar" style="--w:28%"></div>28%</span></div>
+              <div class="dt-row"><span>Linie drugorzędne</span><span>9 513 km</span><span class="bar-cell"><div class="bar" style="--w:51%"></div>51%</span></div>
+              <div class="dt-row"><span>Linie zelektryfikowane</span><span>11 900 km</span><span class="bar-cell"><div class="bar" style="--w:64%"></div>64%</span></div>
+            </div>
+            <div class="icon-row">
+              <div class="icon-badge">🛤️<span>18 513 km</span></div>
+              <div class="icon-badge">⚡<span>11 900 km zelektr.</span></div>
+              <div class="icon-badge">🌍<span>Sieć TEN-T</span></div>
+              <div class="icon-badge">🏗️<span>Modernizacja CPK</span></div>
+            </div>
+          </div>
+          <div class="stat-panel">
+            <div class="stat-item"><div class="stat-val counter" data-target="18513">0</div><div class="stat-lbl">KM ŁĄCZNEJ SIECI</div></div>
+            <div class="stat-item"><div class="stat-val counter" data-target="64">0</div><div class="stat-lbl">% ZELEKTRYFIKOWANYCH</div></div>
+            <div class="stat-item"><div class="stat-val counter" data-target="16">0</div><div class="stat-lbl">WOJEWÓDZTW Z KOLEJĄ</div></div>
+            <div class="stat-item"><div class="stat-val counter" data-target="7">0</div><div class="stat-lbl">KORYTARZY TEN-T</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 INFRA -->
+      <section class="section" id="sec-infra">
+        <div class="sec-header">
+          <div class="sec-num-big">03</div>
+          <div><div class="sec-tag">SPECYFIKACJA TECHNICZNA // PARAMETRY</div>
+          <h1 class="sec-title" data-text="INFRASTRUKTURA KOLEJOWA">INFRASTRUKTURA KOLEJOWA</h1></div>
+          <div class="status-pill">● AKTYWNY</div>
+        </div>
+        <div class="two-col">
+          <div class="text-block">
+            <p class="tw" data-d="0">Infrastruktura kolejowa obejmuje tory, podtorze, obiekty inżynieryjne (mosty, wiadukty, tunele), stacje, systemy sterowania ruchem oraz sieć trakcyjną zasilającą pociągi elektryczne.</p>
+            <p class="tw" data-d="1">Polska kolej korzysta ze standardowego rozstawu szyn <span class="hl">1435 mm</span>. Linie zelektryfikowane zasilane są napięciem <span class="hl">3 kV DC</span> lub <span class="hl">25 kV AC</span> na nowych odcinkach.</p>
+            <p class="tw" data-d="2">Trwa wdrożenie systemu <span class="hl">ETCS/ERTMS</span> — europejskiego standardu zarządzania ruchem kolejowym, który zastąpi przestarzałe systemy sygnalizacji.</p>
+            <div class="spec-grid">
+              <div class="spec-card"><div class="sc-icon">⚡</div><div class="sc-name">ZASILANIE</div><div class="sc-val">3 kV DC / 25 kV AC</div></div>
+              <div class="spec-card"><div class="sc-icon">📏</div><div class="sc-name">ROZSTAW SZYN</div><div class="sc-val">1435 mm</div></div>
+              <div class="spec-card"><div class="sc-icon">🚦</div><div class="sc-name">STEROWANIE</div><div class="sc-val">ETCS / ERTMS</div></div>
+              <div class="spec-card"><div class="sc-icon">🌉</div><div class="sc-name">MOSTY</div><div class="sc-val">&gt; 7 000 obiektów</div></div>
+              <div class="spec-card"><div class="sc-icon">⚡</div><div class="sc-name">PRĘDKOŚĆ MAKS.</div><div class="sc-val">200 km/h (CMK)</div></div>
+              <div class="spec-card"><div class="sc-icon">🔧</div><div class="sc-name">PROGRAM</div><div class="sc-val">KPO / CPK</div></div>
+            </div>
+          </div>
+          <div class="infra-visual">
+            <svg viewBox="0 0 280 320" xmlns="http://www.w3.org/2000/svg" class="infra-svg">
+              <!-- Cross section of track -->
+              <text x="140" y="20" text-anchor="middle" fill="#00ff88" font-size="11" font-family="monospace" letter-spacing="2">PRZEKRÓJ TORU</text>
+              <!-- Rail left -->
+              <rect x="60" y="60" width="20" height="8" rx="2" fill="#00ff88" opacity="0.8"/>
+              <rect x="65" y="68" width="10" height="20" fill="#00cc66" opacity="0.6"/>
+              <!-- Rail right -->
+              <rect x="200" y="60" width="20" height="8" rx="2" fill="#00ff88" opacity="0.8"/>
+              <rect x="205" y="68" width="10" height="20" fill="#00cc66" opacity="0.6"/>
+              <!-- Sleeper -->
+              <rect x="40" y="85" width="200" height="12" rx="3" fill="#0d2010" stroke="#1a4a22" stroke-width="1.5"/>
+              <rect x="40" y="115" width="200" height="12" rx="3" fill="#0d2010" stroke="#1a4a22" stroke-width="1.5"/>
+              <rect x="40" y="145" width="200" height="12" rx="3" fill="#0d2010" stroke="#1a4a22" stroke-width="1.5"/>
+              <!-- Ballast -->
+              <polygon points="20,175 260,175 280,200 0,200" fill="#0a1a0e" stroke="#1a4a22" stroke-width="1"/>
+              <!-- Labels -->
+              <line x1="85" y1="64" x2="130" y2="40" stroke="#00ff88" stroke-width="0.5" stroke-dasharray="3,3"/>
+              <text x="132" y="38" fill="#00ff88" font-size="9" font-family="monospace">SZYNA</text>
+              <line x1="140" y1="91" x2="140" y2="50" stroke="#ff6600" stroke-width="0.5" stroke-dasharray="3,3"/>
+              <text x="145" y="48" fill="#ff6600" font-size="9" font-family="monospace">PODKŁAD</text>
+              <line x1="140" y1="185" x2="200" y2="210" stroke="#4a8a5a" stroke-width="0.5" stroke-dasharray="3,3"/>
+              <text x="202" y="213" fill="#4a8a5a" font-size="9" font-family="monospace">PODSYPKA</text>
+              <!-- Dimension -->
+              <line x1="65" y1="50" x2="215" y2="50" stroke="#1a4a22" stroke-width="1"/>
+              <line x1="65" y1="46" x2="65" y2="54" stroke="#1a4a22" stroke-width="1"/>
+              <line x1="215" y1="46" x2="215" y2="54" stroke="#1a4a22" stroke-width="1"/>
+              <text x="140" y="46" text-anchor="middle" fill="#4a8a5a" font-size="9" font-family="monospace">1435 mm</text>
+              <!-- Catenary -->
+              <line x1="70" y1="30" x2="210" y2="30" stroke="#ff6600" stroke-width="1.5" stroke-dasharray="5,3"/>
+              <line x1="70" y1="25" x2="70" y2="60" stroke="#ff6600" stroke-width="1"/>
+              <line x1="210" y1="25" x2="210" y2="60" stroke="#ff6600" stroke-width="1"/>
+              <text x="140" y="24" text-anchor="middle" fill="#ff6600" font-size="9" font-family="monospace">SIEĆ TRAKCYJNA 3kV</text>
+              <!-- ETCS box -->
+              <rect x="30" y="220" width="220" height="50" rx="3" fill="#0a1a0e" stroke="#00ff88" stroke-width="1"/>
+              <text x="140" y="238" text-anchor="middle" fill="#00ff88" font-size="10" font-family="monospace">ETCS / ERTMS</text>
+              <text x="140" y="252" text-anchor="middle" fill="#4a8a5a" font-size="8" font-family="monospace">EUROPEJSKI SYSTEM STEROWANIA</text>
+              <text x="140" y="264" text-anchor="middle" fill="#4a8a5a" font-size="8" font-family="monospace">RUCHEM KOLEJOWYM</text>
+              <!-- Signal -->
+              <rect x="240" y="55" width="16" height="40" rx="2" fill="#0a1a0e" stroke="#1a4a22" stroke-width="1"/>
+              <circle cx="248" cy="65" r="5" fill="#ff2244" opacity="0.9"/>
+              <circle cx="248" cy="78" r="5" fill="#ff6600" opacity="0.4"/>
+              <circle cx="248" cy="91" r="5" fill="#00ff88" opacity="0.9" class="signal-blink"/>
+              <text x="248" y="108" text-anchor="middle" fill="#4a8a5a" font-size="7" font-family="monospace">SEM.</text>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 MGMT -->
+      <section class="section" id="sec-mgmt">
+        <div class="sec-header">
+          <div class="sec-num-big">04</div>
+          <div><div class="sec-tag">STRUKTURA DOWODZENIA // HIERARCHIA</div>
+          <h1 class="sec-title" data-text="ZARZĄDZANIE INFRASTRUKTURĄ">ZARZĄDZANIE INFRASTRUKTURĄ</h1></div>
+          <div class="status-pill">● AKTYWNY</div>
+        </div>
+        <div class="two-col">
+          <div class="text-block">
+            <p class="tw" data-d="0"><span class="hl">PKP Polskie Linie Kolejowe S.A.</span> — główny zarządca infrastruktury kolejowej w Polsce. Spółka Skarbu Państwa odpowiedzialna za utrzymanie, modernizację i udostępnianie sieci.</p>
+            <p class="tw" data-d="1"><span class="hl">Urząd Transportu Kolejowego (UTK)</span> — regulator rynku kolejowego, dbający o bezpieczeństwo i konkurencję. Wydaje licencje i certyfikaty bezpieczeństwa.</p>
+            <p class="tw" data-d="2"><span class="hl">Ministerstwo Infrastruktury</span> kształtuje politykę transportową i nadzoruje realizację inwestycji w ramach Krajowego Programu Kolejowego (wartość: 76 mld zł).</p>
+          </div>
+          <div class="org-chart">
+            <div class="org-node top">🏛️ MINISTERSTWO INFRASTRUKTURY</div>
+            <div class="org-line"></div>
+            <div class="org-row">
+              <div class="org-node mid">🛤️ PKP PLK S.A.<br><small>Zarządca infrastruktury</small></div>
+              <div class="org-node mid">⚖️ UTK<br><small>Regulator / Nadzór</small></div>
+            </div>
+            <div class="org-line"></div>
+            <div class="org-row three">
+              <div class="org-node sm">📍 Zakłady Linii Kolejowych</div>
+              <div class="org-node sm">🖥️ Centrum Zarządzania Ruchem</div>
+              <div class="org-node sm">🗺️ Biura Regionalne (16)</div>
+            </div>
+            <div class="org-stats">
+              <div class="os-item"><span class="os-val">76 mld zł</span><span class="os-lbl">KPK 2021-2030</span></div>
+              <div class="os-item"><span class="os-val">~30 000</span><span class="os-lbl">Pracowników PKP PLK</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 PASSENGER -->
+      <section class="section" id="sec-passenger">
+        <div class="sec-header">
+          <div class="sec-num-big">05</div>
+          <div><div class="sec-tag">DANE OPERACYJNE // RUCH PASAŻERSKI</div>
+          <h1 class="sec-title" data-text="PRZEWOZY PASAŻERSKIE">PRZEWOZY PASAŻERSKIE</h1></div>
+          <div class="status-pill">● AKTYWNY</div>
+        </div>
+        <div class="two-col">
+          <div class="text-block">
+            <p class="tw" data-d="0">Przewozy pasażerskie realizowane są przez kilkunastu przewoźników — regionalnych i dalekobieżnych. Rynek jest zliberalizowany, przewoźnicy konkurują o dostęp do tras.</p>
+            <p class="tw" data-d="1">Rocznie z kolei korzysta ponad <span class="hl">280 milionów pasażerów</span>. Największy ruch odnotowują trasy aglomeracyjne i połączenia między głównymi miastami.</p>
+            <p class="tw" data-d="2">Dofinansowanie przewozów regionalnych pochodzi z budżetów województw w ramach umów PSO (Public Service Obligation). Łączna wartość kontraktów przekracza <span class="hl">3 mld zł rocznie</span>.</p>
+            <div class="icon-row">
+              <div class="icon-badge big">🚆<span>4 200<br>pociągów/dzień</span></div>
+              <div class="icon-badge big">👥<span>280 mln<br>pasażerów/rok</span></div>
+              <div class="icon-badge big">🗺️<span>15<br>przewoźników</span></div>
+              <div class="icon-badge big">💰<span>3 mld zł<br>dofinansowanie</span></div>
+            </div>
+          </div>
+          <div class="stat-panel">
+            <div class="stat-item"><div class="stat-val counter" data-target="280">0</div><div class="stat-lbl">MLN PASAŻERÓW / ROK</div></div>
+            <div class="stat-item"><div class="stat-val counter" data-target="15">0</div><div class="stat-lbl">PRZEWOŹNIKÓW PASAŻ.</div></div>
+            <div class="stat-item"><div class="stat-val counter" data-target="4200">0</div><div class="stat-lbl">POCIĄGÓW DZIENNIE</div></div>
+            <div class="stat-item"><div class="stat-val counter" data-target="95">0</div><div class="stat-lbl">% PUNKTUALNOŚCI IC</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 CARRIERS -->
+      <section class="section" id="sec-carriers">
+        <div class="sec-header">
+          <div class="sec-num-big">06</div>
+          <div><div class="sec-tag">IDENTYFIKACJA JEDNOSTEK // PRZEWOŹNICY</div>
+          <h1 class="sec-title" data-text="PRZEWOŹNICY">PRZEWOŹNICY PASAŻERSCY</h1></div>
+          <div class="status-pill">● AKTYWNY</div>
+        </div>
+        <div class="carriers-grid">
+          <div class="carrier-card">
+            <div class="cc-header">
+              <div class="cc-badge pr">PR</div>
+              <div><div class="cc-name">POLREGIO</div><div class="cc-sub">PRZEWOŹNIK REGIONALNY</div></div>
+              <div class="cc-scope">OGÓLNOPOLSKI</div>
+            </div>
+            <div class="cc-body">Największy regionalny przewoźnik kolejowy w Polsce. Obsługuje połączenia w 15 województwach. Tabor: EN57, EN71, SA134, Flirt 3.</div>
+            <div class="cc-stats">
+              <span>🚆 ~1200 pociągów/dzień</span><span>🗺️ 15 województw</span><span>👥 Spółka PKP</span>
+            </div>
+          </div>
+          <div class="carrier-card">
+            <div class="cc-header">
+              <div class="cc-badge lka">ŁKA</div>
+              <div><div class="cc-name">ŁÓDZKA KOLEJ AGLOMERACYJNA</div><div class="cc-sub">PRZEWOŹNIK REGIONALNY</div></div>
+              <div class="cc-scope">WOJ. ŁÓDZKIE</div>
+            </div>
+            <div class="cc-body">Przewoźnik obsługujący aglomerację łódzką i połączenia regionalne w województwie łódzkim. Nowoczesny tabor Pesa Elf 2.</div>
+            <div class="cc-stats"><span>🚆 Pesa Elf 2</span><span>🗺️ Woj. łódzkie</span><span>🏙️ Aglomeracja</span></div>
+          </div>
+          <div class="carrier-card">
+            <div class="cc-header">
+              <div class="cc-badge km">KM</div>
+              <div><div class="cc-name">KOLEJE MAZOWIECKIE</div><div class="cc-sub">PRZEWOŹNIK REGIONALNY</div></div>
+              <div class="cc-scope">WOJ. MAZOWIECKIE</div>
+            </div>
+            <div class="cc-body">Przewoźnik regionalny Mazowsza. Obsługuje gęstą sieć połączeń wokół Warszawy i w całym województwie mazowieckim. Tabor: EN57, Flirt.</div>
+            <div class="cc-stats"><span>🚆 ~500 pociągów/dzień</span><span>🗺️ Mazowsze</span><span>🏙️ Warszawa</span></div>
+          </div>
+          <div class="carrier-card">
+            <div class="cc-header">
+              <div class="cc-badge kw">KW</div>
+              <div><div class="cc-name">KOLEJE WIELKOPOLSKIE</div><div class="cc-sub">PRZEWOŹNIK REGIONALNY</div></div>
+              <div class="cc-scope">WOJ. WIELKOPOLSKIE</div>
+            </div>
+            <div class="cc-body">Regionalny przewoźnik województwa wielkopolskiego. Połączenia z Poznania do miast regionu. Tabor: Pesa Elf, SA134, EN57.</div>
+            <div class="cc-stats"><span>🚆 Pesa Elf</span><span>🗺️ Wielkopolska</span><span>🏙️ Poznań</span></div>
+          </div>
+          <div class="carrier-card featured">
+            <div class="cc-header">
+              <div class="cc-badge ic">IC</div>
+              <div><div class="cc-name">PKP INTERCITY</div><div class="cc-sub">PRZEWOŹNIK DALEKOBIEŻNY</div></div>
+              <div class="cc-scope">OGÓLNOPOLSKI + INT.</div>
+            </div>
+            <div class="cc-body">Narodowy przewoźnik dalekobieżny. Pociągi EIP (Pendolino), EIC, IC i TLK. Prędkość do 200 km/h na CMK. Połączenia z Niemcami, Austrią, Czechami.</div>
+            <div class="cc-stats"><span>🚄 ED250 Pendolino</span><span>⚡ 200 km/h</span><span>🌍 Międzynarodowe</span></div>
+          </div>
+          <div class="carrier-card">
+            <div class="cc-header">
+              <div class="cc-badge ks">KŚ</div>
+              <div><div class="cc-name">KOLEJE ŚLĄSKIE</div><div class="cc-sub">PRZEWOŹNIK REGIONALNY</div></div>
+              <div class="cc-scope">WOJ. ŚLĄSKIE</div>
+            </div>
+            <div class="cc-body">Przewoźnik regionalny Śląska i Zagłębia. Obsługuje gęstą sieć połączeń w aglomeracji śląskiej — jednej z największych w Polsce.</div>
+            <div class="cc-stats"><span>🚆 Flirt, SA134</span><span>🗺️ Śląsk</span><span>🏙️ Katowice</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 CARGO -->
+      <section class="section" id="sec-cargo">
+        <div class="sec-header">
+          <div class="sec-num-big">07</div>
+          <div><div class="sec-tag">LOGISTYKA CIĘŻKA // PKP CARGO</div>
+          <h1 class="sec-title" data-text="TRANSPORT TOWAROWY">TRANSPORT TOWAROWY</h1></div>
+          <div class="status-pill">● AKTYWNY</div>
+        </div>
+        <div class="two-col">
+          <div class="text-block">
+            <p class="tw" data-d="0"><span class="hl">PKP Cargo S.A.</span> — największy kolejowy przewoźnik towarowy w Polsce i drugi co do wielkości w Unii Europejskiej. Spółka giełdowa notowana na GPW.</p>
+            <p class="tw" data-d="1">PKP Cargo przewozi węgiel, kruszywa, paliwa, chemikalia, kontenery i ładunki masowe. Obsługuje terminale intermodalne i połączenia z portami morskimi w Gdańsku, Gdyni i Szczecinie.</p>
+            <p class="tw" data-d="2">Rynek towarowy jest w pełni zliberalizowany — obok PKP Cargo działają prywatni przewoźnicy: <span class="hl">DB Cargo Polska</span>, <span class="hl">CTL Logistics</span>, <span class="hl">Lotos Kolej</span> i inni.</p>
+            <div class="cargo-types">
+              <div class="ct-item">⛏️<span>Węgiel i koks</span></div>
+              <div class="ct-item">🪨<span>Kruszywa</span></div>
+              <div class="ct-item">⛽<span>Paliwa</span></div>
+              <div class="ct-item">🧪<span>Chemikalia</span></div>
+              <div class="ct-item">📦<span>Kontenery</span></div>
+              <div class="ct-item">🌾<span>Zboże</span></div>
+              <div class="ct-item">🏗️<span>Materiały bud.</span></div>
+              <div class="ct-item">🚗<span>Samochody</span></div>
+            </div>
+          </div>
+          <div class="stat-panel">
+            <div class="stat-item"><div class="stat-val counter" data-target="1850">0</div><div class="stat-lbl">MLN TONOKILOMETRÓW</div></div>
+            <div class="stat-item"><div class="stat-val counter" data-target="100">0</div><div class="stat-lbl">MLN TON ŁADUNKÓW / ROK</div></div>
+            <div class="stat-item"><div class="stat-val counter" data-target="30">0</div><div class="stat-lbl">% UDZIAŁ W RYNKU UE</div></div>
+            <div class="stat-item"><div class="stat-val counter" data-target="6500">0</div><div class="stat-lbl">LOKOMOTYW I WAGONÓW</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08 TYPES -->
+      <section class="section" id="sec-types">
+        <div class="sec-header">
+          <div class="sec-num-big">08</div>
+          <div><div class="sec-tag">KLASYFIKACJA SPRZĘTU // TABOR</div>
+          <h1 class="sec-title" data-text="RODZAJE POCIĄGÓW">RODZAJE POCIĄGÓW PASAŻERSKICH</h1></div>
+          <div class="status-pill">● AKTYWNY</div>
+        </div>
+        <div class="types-grid">
+          <div class="type-card">
+            <div class="tc-top"><span class="tc-icon">🚄</span><div class="tc-speed"><span class="spd">200</span><span class="spu">km/h</span></div></div>
+            <div class="tc-name">EIP / PENDOLINO</div>
+            <div class="tc-badge">EXPRESS INTERCITY PREMIUM</div>
+            <div class="tc-desc">Najszybsze pociągi w Polsce. Tabor ED250 Pendolino. Trasy: Warszawa–Kraków, Warszawa–Gdańsk, Warszawa–Wrocław. Klimatyzacja, WiFi, bistro.</div>
+            <div class="tc-tags"><span>PKP Intercity</span><span>CMK</span><span>Rezerwacja</span></div>
+          </div>
+          <div class="type-card">
+            <div class="tc-top"><span class="tc-icon">🚅</span><div class="tc-speed"><span class="spd">160</span><span class="spu">km/h</span></div></div>
+            <div class="tc-name">EIC / IC</div>
+            <div class="tc-badge">EXPRESS INTERCITY / INTERCITY</div>
+            <div class="tc-desc">Pociągi dalekobieżne klasy premium. Komfortowe wagony, wagon restauracyjny, rezerwacja miejsc. Łączą główne miasta Polski.</div>
+            <div class="tc-tags"><span>PKP Intercity</span><span>Dalekobieżny</span><span>Wagon rest.</span></div>
+          </div>
+          <div class="type-card">
+            <div class="tc-top"><span class="tc-icon">🚆</span><div class="tc-speed"><span class="spd">120</span><span class="spu">km/h</span></div></div>
+            <div class="tc-name">TLK</div>
+            <div class="tc-badge">TWOJE LINIE KOLEJOWE</div>
+            <div class="tc-desc">Pociągi dalekobieżne klasy ekonomicznej. Łączą mniejsze miasta z głównymi węzłami. Dostępne ceny biletów, brak obowiązkowej rezerwacji.</div>
+            <div class="tc-tags"><span>PKP Intercity</span><span>Ekonomiczny</span><span>Ogólnopolski</span></div>
+          </div>
+          <div class="type-card">
+            <div class="tc-top"><span class="tc-icon">🚇</span><div class="tc-speed"><span class="spd">100</span><span class="spu">km/h</span></div></div>
+            <div class="tc-name">REGIO / IR</div>
+            <div class="tc-badge">POCIĄGI REGIONALNE</div>
+            <div class="tc-desc">Obsługują połączenia regionalne i aglomeracyjne. Tabor: EN57, Flirt 3, Pesa Elf, SA134. Częste zatrzymania, obsługa małych stacji.</div>
+            <div class="tc-tags"><span>PolRegio</span><span>Regionalny</span><span>PSO</span></div>
+          </div>
+          <div class="type-card">
+            <div class="tc-top"><span class="tc-icon">🚈</span><div class="tc-speed"><span class="spd">120</span><span class="spu">km/h</span></div></div>
+            <div class="tc-name">SKM / KM</div>
+            <div class="tc-badge">SZYBKA KOLEJ MIEJSKA</div>
+            <div class="tc-desc">Kolej aglomeracyjna w dużych miastach (Trójmiasto, Warszawa, Kraków). Wysoka częstotliwość, integracja z komunikacją miejską, wspólny bilet.</div>
+            <div class="tc-tags"><span>Aglomeracyjny</span><span>Wysoka częst.</span><span>Integracja</span></div>
+          </div>
+          <div class="type-card">
+            <div class="tc-top"><span class="tc-icon">🌍</span><div class="tc-speed"><span class="spd">160</span><span class="spu">km/h</span></div></div>
+            <div class="tc-name">EC / EN</div>
+            <div class="tc-badge">EUROCITY / EURONIGHT</div>
+            <div class="tc-desc">Połączenia z Niemcami, Austrią, Czechami, Węgrami. Pociągi nocne z kuszetkami i wagonami sypialnymi. Integracja z siecią europejską.</div>
+            <div class="tc-tags"><span>Międzynarodowy</span><span>Nocny</span><span>Kuszetki</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 09 PROS -->
+      <section class="section" id="sec-pros">
+        <div class="sec-header">
+          <div class="sec-num-big">09</div>
+          <div><div class="sec-tag">ANALIZA STRATEGICZNA // OCENA POZYTYWNA</div>
+          <h1 class="sec-title" data-text="ZALETY">ZALETY TRANSPORTU KOLEJOWEGO</h1></div>
+          <div class="status-pill green">● POZYTYWNE</div>
+        </div>
+        <div class="pros-cons-grid">
+          <div class="pro-item"><div class="pci">✅</div><div><strong>Ekologia</strong> — emisja CO₂ nawet 6× niższa niż transport samochodowy. Elektryczne pociągi mogą być zasilane z OZE.</div></div>
+          <div class="pro-item"><div class="pci">✅</div><div><strong>Pojemność</strong> — jeden pociąg może przewieźć tyle pasażerów co kilkaset samochodów lub kilkadziesiąt ciężarówek.</div></div>
+          <div class="pro-item"><div class="pci">✅</div><div><strong>Bezpieczeństwo</strong> — kolej jest jednym z najbezpieczniejszych środków transportu. Wskaźnik wypadków wielokrotnie niższy niż drogi.</div></div>
+          <div class="pro-item"><div class="pci">✅</div><div><strong>Niezawodność</strong> — niezależność od korków drogowych i warunków atmosferycznych. Śnieg i mgła nie zatrzymują kolei.</div></div>
+          <div class="pro-item"><div class="pci">✅</div><div><strong>Komfort</strong> — możliwość pracy, odpoczynku i poruszania się podczas podróży. Brak konieczności prowadzenia pojazdu.</div></div>
+          <div class="pro-item"><div class="pci">✅</div><div><strong>Efektywność energetyczna</strong> — zużycie energii na tonokilometr wielokrotnie niższe niż transport lotniczy i drogowy.</div></div>
+          <div class="pro-item"><div class="pci">✅</div><div><strong>Odciążenie dróg</strong> — przeniesienie ruchu na kolej zmniejsza zużycie infrastruktury drogowej i korki w miastach.</div></div>
+          <div class="pro-item"><div class="pci">✅</div><div><strong>Dostępność centrów</strong> — dworce kolejowe zlokalizowane są w centrach miast, bez potrzeby dojazdu na lotnisko.</div></div>
+        </div>
+      </section>
+
+      <!-- 10 CONS -->
+      <section class="section" id="sec-cons">
+        <div class="sec-header">
+          <div class="sec-num-big">10</div>
+          <div><div class="sec-tag">ANALIZA RYZYKA // OCENA NEGATYWNA</div>
+          <h1 class="sec-title" data-text="WADY">WADY TRANSPORTU KOLEJOWEGO</h1></div>
+          <div class="status-pill red">● ZAGROŻENIA</div>
+        </div>
+        <div class="pros-cons-grid">
+          <div class="con-item"><div class="pci">❌</div><div><strong>Wysokie koszty inwestycji</strong> — budowa i modernizacja infrastruktury kolejowej wymaga ogromnych nakładów finansowych ze środków publicznych.</div></div>
+          <div class="con-item"><div class="pci">❌</div><div><strong>Brak elastyczności</strong> — pociąg jedzie tylko tam, gdzie są tory. Brak możliwości zmiany trasy jak w transporcie drogowym.</div></div>
+          <div class="con-item"><div class="pci">❌</div><div><strong>Opóźnienia</strong> — awarie, roboty torowe i przepustowość sieci powodują opóźnienia, szczególnie na liniach jednotorowych.</div></div>
+          <div class="con-item"><div class="pci">❌</div><div><strong>Hałas i wibracje</strong> — linie kolejowe generują hałas i drgania uciążliwe dla mieszkańców w pobliżu torów.</div></div>
+          <div class="con-item"><div class="pci">❌</div><div><strong>Ograniczona dostępność</strong> — wiele małych miejscowości nie ma dostępu do kolei po likwidacji linii w latach 90. XX wieku.</div></div>
+          <div class="con-item"><div class="pci">❌</div><div><strong>Sztywność rozkładu</strong> — pociągi kursują według stałego rozkładu, co może być niedogodne przy nieregularnych podróżach.</div></div>
+          <div class="con-item"><div class="pci">❌</div><div><strong>Starzejący się tabor</strong> — część pociągów regionalnych to przestarzałe jednostki wymagające wymiany lub kosztownych remontów.</div></div>
+          <div class="con-item"><div class="pci">❌</div><div><strong>Złożoność systemu</strong> — zarządzanie siecią kolejową wymaga koordynacji wielu podmiotów, co może prowadzić do nieefektywności.</div></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT: MAP PANEL (always visible) -->
+    <aside id="map-panel">
+      <div class="map-header">
+        <span class="map-title">// MAPA OPERACYJNA</span>
+        <span class="map-sub" id="map-section-label">POLSKA // SIEĆ KOLEJOWA</span>
+      </div>
+      <div id="poland-map-wrap">
+        <!-- Holographic glow rings -->
+        <div class="holo-ring r1"></div>
+        <div class="holo-ring r2"></div>
+        <div class="holo-ring r3"></div>
+        <svg id="poland-map" viewBox="0 0 340 360" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Holographic glow filter -->
+            <filter id="holoGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="3" result="blur1"/>
+              <feGaussianBlur stdDeviation="8" result="blur2"/>
+              <feMerge><feMergeNode in="blur2"/><feMergeNode in="blur1"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="cityGlow" x="-100%" y="-100%" width="300%" height="300%">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="lineGlow">
+              <feGaussianBlur stdDeviation="2" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <radialGradient id="polandFill" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#001a33" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#000d1a" stop-opacity="0.6"/>
+            </radialGradient>
+            <radialGradient id="cityOrange" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ff9900"/>
+              <stop offset="100%" stop-color="#ff4400"/>
+            </radialGradient>
+            <clipPath id="polandClip">
+              <path d="M 75,28 L 88,18 L 105,14 L 125,12 L 148,15 L 168,12 L 192,14 L 215,12 L 238,18 L 258,16 L 272,24 L 284,36 L 290,52 L 294,70 L 298,90 L 300,110 L 296,128 L 306,148 L 302,168 L 292,182 L 288,200 L 278,216 L 268,232 L 256,246 L 242,258 L 226,268 L 210,274 L 194,282 L 178,287 L 162,290 L 146,286 L 130,280 L 114,272 L 98,262 L 82,250 L 70,236 L 60,220 L 52,204 L 46,186 L 42,168 L 40,148 L 42,128 L 46,108 L 50,88 L 56,68 L 64,50 Z"/>
+            </clipPath>
+            <pattern id="holoGrid" width="18" height="18" patternUnits="userSpaceOnUse">
+              <path d="M 18 0 L 0 0 0 18" fill="none" stroke="#0066aa" stroke-width="0.4" opacity="0.5"/>
+            </pattern>
+          </defs>
+
+          <!-- Background grid -->
+          <rect width="340" height="360" fill="#000d1a" opacity="0.3"/>
+          <rect width="340" height="360" fill="url(#holoGrid)"/>
+
+          <!-- Poland fill with glow -->
+          <path d="M 75,28 L 88,18 L 105,14 L 125,12 L 148,15 L 168,12 L 192,14 L 215,12 L 238,18 L 258,16 L 272,24 L 284,36 L 290,52 L 294,70 L 298,90 L 300,110 L 296,128 L 306,148 L 302,168 L 292,182 L 288,200 L 278,216 L 268,232 L 256,246 L 242,258 L 226,268 L 210,274 L 194,282 L 178,287 L 162,290 L 146,286 L 130,280 L 114,272 L 98,262 L 82,250 L 70,236 L 60,220 L 52,204 L 46,186 L 42,168 L 40,148 L 42,128 L 46,108 L 50,88 L 56,68 L 64,50 Z"
+            fill="url(#polandFill)" stroke="#00aaff" stroke-width="2" filter="url(#holoGlow)" opacity="0.95"/>
+          <!-- Inner glow fill -->
+          <path d="M 75,28 L 88,18 L 105,14 L 125,12 L 148,15 L 168,12 L 192,14 L 215,12 L 238,18 L 258,16 L 272,24 L 284,36 L 290,52 L 294,70 L 298,90 L 300,110 L 296,128 L 306,148 L 302,168 L 292,182 L 288,200 L 278,216 L 268,232 L 256,246 L 242,258 L 226,268 L 210,274 L 194,282 L 178,287 L 162,290 L 146,286 L 130,280 L 114,272 L 98,262 L 82,250 L 70,236 L 60,220 L 52,204 L 46,186 L 42,168 L 40,148 L 42,128 L 46,108 L 50,88 L 56,68 L 64,50 Z"
+            fill="none" stroke="#44ddff" stroke-width="0.8" opacity="0.6"/>
+
+          <!-- Grid inside Poland -->
+          <rect width="340" height="360" fill="url(#holoGrid)" clip-path="url(#polandClip)" opacity="0.8"/>
+
+          <!-- Railway lines with blue glow -->
+          <g filter="url(#lineGlow)">
+            <g stroke="#00ccff" stroke-width="1.2" opacity="0.7" fill="none" class="rail-lines">
+              <line x1="185" y1="128" x2="185" y2="58"/>
+              <line x1="185" y1="128" x2="100" y2="152"/>
+              <line x1="185" y1="128" x2="268" y2="152"/>
+              <line x1="185" y1="128" x2="185" y2="218"/>
+              <line x1="185" y1="128" x2="258" y2="196"/>
+              <line x1="185" y1="128" x2="112" y2="196"/>
+              <line x1="62" y1="96" x2="100" y2="152"/>
+              <line x1="100" y1="152" x2="130" y2="228"/>
+              <line x1="130" y1="228" x2="185" y2="218"/>
+              <line x1="185" y1="218" x2="238" y2="238"/>
+              <line x1="185" y1="58" x2="238" y2="54"/>
+              <line x1="100" y1="152" x2="185" y2="128"/>
+              <line x1="238" y1="54" x2="268" y2="96"/>
+              <line x1="130" y1="228" x2="162" y2="246"/>
+              <line x1="62" y1="96" x2="88" y2="60"/>
+            </g>
+            <!-- Thinner secondary lines -->
+            <g stroke="#0088cc" stroke-width="0.6" opacity="0.4" fill="none">
+              <line x1="185" y1="128" x2="238" y2="110"/>
+              <line x1="185" y1="128" x2="148" y2="100"/>
+              <line x1="100" y1="152" x2="62" y2="152"/>
+              <line x1="185" y1="218" x2="162" y2="246"/>
+              <line x1="258" y1="196" x2="238" y2="238"/>
+              <line x1="112" y1="196" x2="130" y2="228"/>
+            </g>
+          </g>
+
+          <!-- City dots with holographic glow -->
+          <g class="city-dots">
+            <!-- WARSZAWA - main hub -->
+            <circle cx="185" cy="128" r="10" fill="none" stroke="#ff8800" stroke-width="1" opacity="0.3" class="city-ring"/>
+            <circle cx="185" cy="128" r="6" fill="url(#cityOrange)" filter="url(#cityGlow)" class="city-pulse"/>
+            <circle cx="185" cy="128" r="3" fill="#ffffff" opacity="0.9"/>
+            <text x="196" y="124" fill="#ffaa00" font-size="10" font-family="monospace" font-weight="bold" filter="url(#cityGlow)">WARSZAWA</text>
+
+            <!-- GDAŃSK -->
+            <circle cx="185" cy="58" r="5" fill="#00ddff" filter="url(#cityGlow)" class="city-pulse"/>
+            <circle cx="185" cy="58" r="2" fill="#ffffff" opacity="0.9"/>
+            <text x="192" y="55" fill="#00ddff" font-size="9" font-family="monospace" font-weight="bold">GDAŃSK</text>
+
+            <!-- POZNAŃ -->
+            <circle cx="100" cy="152" r="5" fill="#00ddff" filter="url(#cityGlow)" class="city-pulse"/>
+            <circle cx="100" cy="152" r="2" fill="#ffffff" opacity="0.9"/>
+            <text x="56" y="149" fill="#00ddff" font-size="9" font-family="monospace" font-weight="bold">POZNAŃ</text>
+
+            <!-- WROCŁAW -->
+            <circle cx="130" cy="228" r="5" fill="#00ddff" filter="url(#cityGlow)" class="city-pulse"/>
+            <circle cx="130" cy="228" r="2" fill="#ffffff" opacity="0.9"/>
+            <text x="86" y="225" fill="#00ddff" font-size="9" font-family="monospace" font-weight="bold">WROCŁAW</text>
+
+            <!-- KRAKÓW -->
+            <circle cx="185" cy="218" r="5" fill="#00ddff" filter="url(#cityGlow)" class="city-pulse"/>
+            <circle cx="185" cy="218" r="2" fill="#ffffff" opacity="0.9"/>
+            <text x="192" y="215" fill="#00ddff" font-size="9" font-family="monospace" font-weight="bold">KRAKÓW</text>
+
+            <!-- ŁÓDŹ -->
+            <circle cx="152" cy="182" r="4" fill="#44ffcc" filter="url(#cityGlow)" class="city-pulse"/>
+            <text x="158" y="179" fill="#44ffcc" font-size="8" font-family="monospace">ŁÓDŹ</text>
+
+            <!-- KATOWICE -->
+            <circle cx="162" cy="238" r="4" fill="#44ffcc" filter="url(#cityGlow)" class="city-pulse"/>
+            <text x="124" y="250" fill="#44ffcc" font-size="8" font-family="monospace">KATOWICE</text>
+
+            <!-- LUBLIN -->
+            <circle cx="258" cy="196" r="4" fill="#44ffcc" filter="url(#cityGlow)" class="city-pulse"/>
+            <text x="263" y="193" fill="#44ffcc" font-size="8" font-family="monospace">LUBLIN</text>
+
+            <!-- BIAŁYSTOK -->
+            <circle cx="268" cy="96" r="4" fill="#44ffcc" filter="url(#cityGlow)" class="city-pulse"/>
+            <text x="272" y="93" fill="#44ffcc" font-size="8" font-family="monospace">BIAŁYSTOK</text>
+
+            <!-- SZCZECIN -->
+            <circle cx="62" cy="96" r="4" fill="#44ffcc" filter="url(#cityGlow)" class="city-pulse"/>
+            <text x="38" y="90" fill="#44ffcc" font-size="8" font-family="monospace">SZCZECIN</text>
+
+            <!-- RZESZÓW -->
+            <circle cx="238" cy="238" r="4" fill="#44ffcc" filter="url(#cityGlow)" class="city-pulse"/>
+            <text x="242" y="250" fill="#44ffcc" font-size="8" font-family="monospace">RZESZÓW</text>
+
+            <!-- OLSZTYN -->
+            <circle cx="238" cy="54" r="3" fill="#2299cc" filter="url(#cityGlow)" class="city-pulse"/>
+            <text x="242" y="51" fill="#2299cc" font-size="7" font-family="monospace">OLSZTYN</text>
+          </g>
+
+          <!-- Scan line -->
+          <line id="map-scan" x1="40" y1="20" x2="310" y2="20" stroke="#00aaff" stroke-width="1.5" opacity="0.5"/>
+
+          <!-- Moving train indicator -->
+          <circle id="train-dot" cx="185" cy="128" r="4" fill="#ff6600" filter="url(#cityGlow)"/>
+          <circle id="train-dot-ring" cx="185" cy="128" r="8" fill="none" stroke="#ff6600" stroke-width="1" opacity="0.5"/>
+
+          <!-- Bottom label -->
+          <text x="170" y="348" fill="#0055aa" font-size="8" font-family="monospace" text-anchor="middle" letter-spacing="1">PKP PLK S.A. // SIEĆ KOLEJOWA PL</text>
+        </svg>
+      </div>
+      <!-- Map stats -->
+      <div class="map-stats">
+        <div class="ms-item"><span class="ms-dot green"></span><span id="ms-active">AKTYWNA SEKCJA: 01</span></div>
+        <div class="ms-item"><span class="ms-dot orange"></span><span>WARSZAWA — HUB GŁÓWNY</span></div>
+        <div class="ms-item"><span class="ms-dot green"></span><span>18 513 KM SIECI</span></div>
+      </div>
+      <!-- Carrier map highlight -->
+      <div id="map-carrier-info" class="map-info-box hidden">
+        <div id="mci-name"></div>
+        <div id="mci-region"></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+<!-- HIDDEN BAIT BUTTONS — scattered across the page -->
+<a class="bait-btn" id="bait1" href="https://www.youtube.com/watch?v=6fYSB2jiiRE" target="_blank" title="DANE TECHNICZNE PKP">
+  <span class="bait-inner">⚙ DANE TECHNICZNE</span>
+</a>
+<a class="bait-btn" id="bait2" href="https://www.youtube.com/watch?v=KSPxHniCtmw" target="_blank" title="RAPORT INFRASTRUKTURY">
+  <span class="bait-inner">📊 RAPORT 2024</span>
+</a>
+<a class="bait-btn" id="bait3" href="https://www.youtube.com/watch?v=-WRv1ssXTXA" target="_blank" title="MAPA SIECI">
+  <span class="bait-inner">🗺 MAPA SIECI</span>
+</a>
+<a class="bait-btn" id="bait4" href="https://www.youtube.com/watch?v=aaLbHjEsiCw" target="_blank" title="STATYSTYKI PRZEWOZÓW">
+  <span class="bait-inner">📈 STATYSTYKI</span>
+</a>
+<a class="bait-btn" id="bait5" href="https://www.youtube.com/watch?v=XfkfxqaeP2U" target="_blank" title="ROZKŁAD JAZDY">
+  <span class="bait-inner">🕐 ROZKŁAD JAZDY</span>
+</a>
+<a class="bait-btn" id="bait6" href="https://www.youtube.com/watch?v=WY_i0sxhVec" target="_blank" title="POBIERZ PDF">
+  <span class="bait-inner">⬇ POBIERZ PDF</span>
+</a>
+<a class="bait-btn" id="bait7" href="https://www.youtube.com/watch?v=qL9UFnZeaLY" target="_blank" title="WIĘCEJ INFORMACJI">
+  <span class="bait-inner">ℹ WIĘCEJ INFO</span>
+</a>
+<a class="bait-btn" id="bait8" href="https://www.youtube.com/watch?v=3tYq9OLErF8" target="_blank" title="KONTAKT PKP">
+  <span class="bait-inner">📞 KONTAKT PKP</span>
+</a>
+</body>
+</html>
